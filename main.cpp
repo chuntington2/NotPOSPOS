@@ -1,15 +1,25 @@
 #include <iostream>
-#include "item.h"
 
-//the user's actions
+#include <iomanip>
+#include <string>
+#include "order.h"
+#include "StoreInventory.h"
+#include "cashierView.h"
+#include "registerController.h"
+#include "keypadController.h"
+
+const char DB_FILE[] = "fruit.db";
+
 int main()
 {
+  StoreInventory inventory (DB_FILE);
   std::cout<<"======================\n"
-           <<"Welcome to Not POS POS\n"
+           <<"NotPOSPOS  Version 0.1\n"
            <<"======================\n";
-  item newItem;
-  std::cout<<newItem.getName()<<std::endl;
-  std::cout<<newItem.getPrice()<<std::endl;
-  std::cout<<newItem.getSKU()<<std::endl;
+  order current;
+  keypadController keypad(&current);
+  registerController ticket(&inventory,&current);
+  ticket.processOrder();
+
   return 0;
 }
