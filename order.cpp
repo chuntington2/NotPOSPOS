@@ -14,6 +14,7 @@ void order::addItem(item i) {
   if( !closed )
   {
     itemList.push_back(i);
+    notifyObservers();
   }
 }
 
@@ -34,6 +35,7 @@ double order::getTax() {
 }
 
 double order::getTotal() {
+  notifyObservers();
   return getSubtotal() * (1 + tax);
 }
 

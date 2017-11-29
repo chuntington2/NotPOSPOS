@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include "item.h"
+#include "ObserverPattern.cpp"
 
 class IOrder
 {
